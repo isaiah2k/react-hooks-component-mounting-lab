@@ -2,6 +2,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import { spy, stub, useFakeTimers } from 'sinon'
 import Adapter from 'enzyme-adapter-react-16';
+import { render, screen } from '@testing-library/react'
 
 configure({ adapter: new Adapter() });
 
