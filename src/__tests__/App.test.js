@@ -19,20 +19,3 @@ test("<App /> calls componentDidMount and adds a Timer", () => {
   appWrapper.unmount()
 })
 
-describe('<Timer />', () => {
-  test('calls componentDidMount', () => {
-    spy(Timer.prototype, 'componentDidMount')
-    const wrapper = shallow(<Timer id={1} removeTimer={() => {}} />)
-
-    expect(Timer.prototype.componentDidMount.calledOnce).toBe(true)
-    wrapper.unmount()
-  })
-
-  test('calls componentWillUnmount', () => {
-    spy(Timer.prototype, 'componentWillUnmount')
-    const wrapper = shallow(<Timer id={1} removeTimer={() => {}} />)
-
-    wrapper.unmount()
-    expect(Timer.prototype.componentWillUnmount.calledOnce).toBe(true)
-  })
-})
