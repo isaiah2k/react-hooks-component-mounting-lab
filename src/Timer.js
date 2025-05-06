@@ -1,10 +1,10 @@
 // src/Timer.js
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
 class Timer extends Component {
   state = {
     time: 0,
-    color: '#' + Math.floor(Math.random() * 16777215).toString(16)
+    color: "#" + Math.floor(Math.random() * 16777215).toString(16)
   }
 
   componentDidMount() {

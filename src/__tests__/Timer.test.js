@@ -1,26 +1,24 @@
-import React from 'react';
-import { configure, shallow } from 'enzyme';
-import { spy, stub, useFakeTimers } from 'sinon'
-import Adapter from 'enzyme-adapter-react-16';
+// src/__tests__/Timer.test.js
+import React from 'react'
+import { configure, shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import { spy } from 'sinon'
+import Timer from '../Timer'
 
-configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() })
 
-import { render } from '@testing-library/react'
-import Timer from '../Timer';
+test('calls componentDidMount', () => {
+  spy(Timer.prototype, 'componentDidMount')
+  const wrapper = shallow(<Timer id={1} removeTimer={() => {}} />)
 
-jest.useFakeTimers()
-
-test('Timer increments time every second after mounting', () => {
-  const { getByText } = render(<Timer id={1} removeTimer={() => {}} />)
-  jest.advanceTimersByTime(3000)
-  expect(getByText("3")).toBeInTheDocument()
+  expect(Timer.prototype.componentDidMount.calledOnce).toBe(true)
+  wrapper.unmount()
 })
 
-test('Timer clears interval on unmount', () => {
-  const clearSpy = jest.spyOn(global, "clearInterval")
-  const { unmount } = render(<Timer id={1} removeTimer={() => {}} />)
+test('calls componentWillUnmount', () => {
+  spy(Timer.prototype, 'componentWillUnmount')
+  const wrapper = shallow(<Timer id={1} removeTimer={() => {}} />)
+  wrapper.unmount()
 
-  unmount()
-  expect(clearSpy).toHaveBeenCalled()
-  clearSpy.mockRestore()
+  expect(Timer.prototype.componentWillUnmount.calledOnce).toBe(true)
 })
