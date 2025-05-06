@@ -6,7 +6,6 @@ class App extends Component {
     timerIDs: []
   }
 
-  // ✅ Add one timer as soon as App mounts
   componentDidMount() {
     this.handleAddTimer()
   }
